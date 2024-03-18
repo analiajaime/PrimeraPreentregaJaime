@@ -8,7 +8,7 @@ module.exports = (cartManager, productManager) => {
             const newCart = await cartManager.createCart()
             res.json({ newCart })
         } catch (error) {
-            console.error("Error creating a new cart", error)
+            console.error("Error al crear el nuevo carrito", error)
             res.status(500).json({ error: 'Internal Server Error' })
         }
     })
@@ -20,7 +20,7 @@ module.exports = (cartManager, productManager) => {
             const cart = await cartManager.getCartById(cartId)
             res.json(cart.products)
         } catch (error) {
-            console.error("Error retrieving the cart", error)
+            console.error("Error al obtener el carrito", error)
             res.status(500).json({ error: 'Internal Server Error' })
         }
     })
@@ -34,7 +34,7 @@ module.exports = (cartManager, productManager) => {
             const updateCart = await cartManager.addProductToCart(cartId, productId, productManager, quantity)
             res.json(updateCart.products)
         } catch (error) {
-            console.error("Error adding a product to the cart", error)
+            console.error("Error al agregar al producto", error)
             res.status(500).json({ error: 'Internal Server Error' })
         }
     })

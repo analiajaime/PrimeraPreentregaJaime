@@ -16,7 +16,7 @@ class ProductManager {
                 this.lastId = Math.max(...this.products.map(product => product.id))
             }
         } catch (error) {
-            console.error("Error loading products from the file", error)
+            console.error('Error en la carga de productos desde el archivo', error)
             await this.saveProducts()
         }
     }
@@ -25,7 +25,7 @@ class ProductManager {
         try {
             await fs.writeFile(this.path, JSON.stringify(this.products, null, 4))
         } catch (error) {
-            console.error("Error saving the file", error)
+            console.error('error al guardar el archivo', error)
         }
     }
 
@@ -34,12 +34,12 @@ class ProductManager {
             let { title, description, category, price, thumbnail, code, stock, status } = newObject
 
             if (!title || !description || !category || !price || !thumbnail || !code || !stock || !status) {
-                console.error("All fields are mandatory.")
+                console.error('does not meet the requirements')
                 return
             }
 
             if (this.products.some(product => product.code === code)) {
-                console.error("A product with that code already exists.")
+                console.error('Product already exists')
                 return
             }
 
@@ -59,7 +59,7 @@ class ProductManager {
 
             await this.saveProducts(this.products)
         } catch (error) {
-            console.error("Error adding the product:", error)
+            console.error('error guardando el producto', error)
             return { error: "Internal Server Error" }
         }
     }

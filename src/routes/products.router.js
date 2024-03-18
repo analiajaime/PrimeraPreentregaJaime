@@ -9,7 +9,7 @@ module.exports = (productManager) => {
             const products = await productManager.getProductsLimit(limit)
             res.json(products)
         } catch (error) {
-            console.error("Error getting the products", error)
+            console.error('Error al buscar los productos', error)
             res.status(500).json({ error: 'Internal Server Error' })
         }
     })
@@ -21,10 +21,10 @@ module.exports = (productManager) => {
             if (product) {
                 res.json(product)
             } else {
-                res.status(404).json({ error: 'Product not found' })
+                res.status(404).json({ error: 'Producto no encontrado' })
             }
         } catch (error) {
-            console.error("Error getting the product", error)
+            console.error('error al obtener el producto', error)
             res.status(500).json({ error: 'Internal Server Error' })
         }
     })
@@ -33,9 +33,9 @@ module.exports = (productManager) => {
         try {
             const newProduct = req.body
             await productManager.addProduct(newProduct)
-            res.json({ message: 'Product added successfully' })
+            res.json({ message: 'Producto agregado exitosamente' })
         } catch (error) {
-            console.error("Error adding the product", error)
+            console.error('Error al agregar el producto', error)
             res.status(500).json({ error: 'Internal Server Error' })
         }
     })
@@ -45,9 +45,9 @@ module.exports = (productManager) => {
             const productId = parseInt(req.params.pid)
             const updatedProduct = req.body
             await productManager.updateProduct(productId, updatedProduct)
-            res.json({ message: 'Product updated successfully' })
+            res.json({ message: 'Producto actualizado exitosamente' })
         } catch (error) {
-            console.error("Error updating the product", error)
+            console.error('Error al actualizar el producto', error)
             res.status(500).json({ error: 'Internal Server Error' })
         }
     })
@@ -56,9 +56,9 @@ module.exports = (productManager) => {
         try {
             const productId = parseInt(req.params.pid)
             await productManager.deleteProduct(productId)
-            res.json({ message: 'Product deleted successfully' })
+            res.json({ message: 'El producto fue borrado exitosamente' })
         } catch (error) {
-            console.error("Error deleting the product", error)
+            console.error("Error borrando este producto", error)
             res.status(500).json({ error: 'Internal Server Error' })
         }
     })
