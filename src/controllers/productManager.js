@@ -34,12 +34,12 @@ class ProductManager {
             let { title, description, category, price, thumbnail, code, stock, status } = newObject
 
             if (!title || !description || !category || !price || !thumbnail || !code || !stock || !status) {
-                console.error('does not meet the requirements')
+                console.error('No reune las condiciones para ser un producto')
                 return
             }
 
             if (this.products.some(product => product.code === code)) {
-                console.error('Product already exists')
+                console.error('El producto ya existe')
                 return
             }
 
@@ -72,13 +72,13 @@ class ProductManager {
         try {
             const foundProduct = this.products.find(item => item.id === id)
             if (!foundProduct) {
-                console.error("Product not found. ID:", id)
+                console.error("Producto no encontrado. ID:", id)
             } else {
-                console.error("Product found:", foundProduct)
+                console.error("Producto encontrado:", foundProduct)
                 return foundProduct
             }
         } catch (error) {
-            console.error("Error reading the file", error)
+            console.error("Error al leer el archivo", error)
         }
     }
 
@@ -88,12 +88,12 @@ class ProductManager {
             if (index !== -1) {
                 this.products.splice(index, 1, { id: id, ...updatedProduct })
                 await this.saveProducts(this.products)
-                console.log("Product updated:", updatedProduct)
+                console.log("Producto actualizado:", updatedProduct)
             } else {
-                console.error("Product not found. ID:", id)
+                console.error("Product no encontrado. ID:", id)
             }
         } catch (error) {
-            console.error("Error updating the product", error)
+            console.error("Error actualizando el producto:", error)
         }
     }
 
@@ -103,12 +103,12 @@ class ProductManager {
             if (index !== -1) {
                 const deletedProduct = this.products.splice(index, 1)
                 await this.saveProducts(this.products)
-                console.log("Product deleted:", deletedProduct)
+                console.log("Producto borrado:", deletedProduct)
             } else {
-                console.error("Product not found. ID:", id)
+                console.error("Producto no encontrado", id)
             }
         } catch (error) {
-            console.error("Error deleting the product", error)
+            console.error("Error en el borrado", error)
         }
     }
 
